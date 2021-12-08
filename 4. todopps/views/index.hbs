@@ -1,0 +1,65 @@
+{{> header}}
+{{#if message}}
+    <div class="alert alert-{{message.type}}" role="alert">
+    {{message.message}}
+    </div>
+    {{/if}}
+{{> navbar}}
+
+<div class="container mt-5">
+    {{#if isLogin}}
+    <form action="/" method="post">
+        <input type="text" placeholder="Add Task" name="addTask">
+        <label for="category">Category :</label>
+        <select name="category">
+            <option value="1">learn programming</option>
+            <option value="2">ngoding</option>
+            <option value="3">studying</option>
+        </select>
+        <button type="submit">Add Task</button>
+    </form>
+    
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Task Name</th>
+      <th scope="col">Task Category</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{todos.0.id}}</th>
+      <td>{{todos.0.name}}</td>
+      <td>{{todos.0.collections_id}}</td>
+      <td>
+        <a href="#" type="button" class="btn btn-light btn-small">Done</a>
+        <a href="/delete-todo/{{todos.id}}" type="button" class="btn btn-light btn-small">Delete</a>
+      </td>
+    </tr>
+    
+    {{#each todos}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.collections_id}}</td>
+      <td>
+        <a href="#" type="button" class="btn btn-light btn-small">Done</a>
+        <a href="/delete-todo/{{this.id}}" type="button" class="btn btn-light btn-small">Delete</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{else}}
+<h2>Please Log in !</h2>
+{{/if}}
+</div>
+
+
+
+
+{{> footer}}
